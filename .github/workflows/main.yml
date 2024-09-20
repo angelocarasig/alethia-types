@@ -18,7 +18,7 @@ jobs:
       # Install dependencies using Bun
       - run: bun install
 
-      - run: bun build
+      - run: bun run build
 
       # Run tests using Bun
       - run: bun test
@@ -38,7 +38,7 @@ jobs:
       # Install dependencies using Bun
       - run: bun install
       
-      - run: bun build
+      - run: bun run build
       
       # Set version number based on run number
       - name: Set Version Number
