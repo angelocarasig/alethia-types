@@ -2,6 +2,7 @@
   "name": "@alethia/types",
   "version": "1.0.0",
   "description": "Type definitions for Alethia project",
+  "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
