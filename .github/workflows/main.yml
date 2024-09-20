@@ -1,0 +1,52 @@
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      
+      # Install dependencies using Bun
+      - run: bun install
+
+      - run: bun build
+
+      # Run tests using Bun
+      - run: bun test
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: NPM
+    steps:
+      - uses: actions/checkout@v4
+
+      # Add bun
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      
+      # Install dependencies using Bun
+      - run: bun install
+      
+      - run: bun build
+      
+      # Set version number based on run number
+      - name: Set Version Number
+        run: |
+          VERSION="1.0.${{ github.run_number }}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          npm version $VERSION --no-git-tag-version
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
