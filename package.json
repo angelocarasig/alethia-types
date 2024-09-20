@@ -1,0 +1,33 @@
+{
+  "name": "@alethia/types",
+  "version": "1.0.0",
+  "description": "Type definitions for Alethia project",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "bun run build"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelocarasig/alethia-types.git"
+  },
+  "keywords": [
+    "typescript",
+    "types",
+    "alethia"
+  ],
+  "author": "Angelo Carasig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angelocarasig/alethia-types/issues"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
