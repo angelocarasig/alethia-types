@@ -47,6 +47,11 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           npm version $VERSION --no-git-tag-version
 
+      - name: Configure npm Auth
+        run: |
+          echo "@alethia:registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.TOKEN }}" >> ~/.npmrc
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
